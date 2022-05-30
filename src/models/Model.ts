@@ -1,12 +1,12 @@
 import { query, QueryBuilder } from '../database';
 
-export default class Model<T = any, C = Omit<T, 'criado_em'>> {
+export default class Model<T = any, C = Omit<T, string>> {
   private table_name: string;
   private pk: string;
 
   constructor(table_name: string, pk?: string) {
     if (!pk) {
-      pk = `id_${table_name}`;
+      pk = `${table_name}Id`;
     }
 
     this.table_name = table_name;
@@ -67,5 +67,14 @@ export default class Model<T = any, C = Omit<T, 'criado_em'>> {
       update.where(this.pk, id);
     }
     return update;
+  }
+
+  delete(id: string | number | Array<string | number>): Promise<T[]> {
+    const user_delete = query(this.getTableName())
+      .where(this.pk, id)
+      .delete()
+      .returning('*');
+
+    return user_delete;
   }
 }

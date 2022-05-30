@@ -4,5 +4,8 @@ export default interface User {
   firstName: string;
   lastName: string;
   email: string;
-  groupId: string;
+  groupsId: string;
+
+  criado_em: Date;
+  removido_em?: Date;
 }
