@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "outDir": "./dist",
+    // "rootDir": "./src",
+    "baseUrl": "./src",
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": [
+      "./src/@types",
+      "./node_modules/@types",
+      "../../node_modules/@types"
+    ],
+    "paths": {
+      "@utils": ["utils"],
+      "@database/*": ["database/*"],
+      "@database": ["database"],
+      "@config/*": ["config/*"],
+      "@config": ["config"],
+      "@entity/*": ["entity/*"],
+      "@entity": ["entity"],
+      "@controllers/*": ["controllers/*"],
+      "@controllers": ["controllers"],
+      "@models/*": ["models/*"],
+      "@models": ["models"],
+      "@routes/*": ["routes/*"],
+      "@routes": ["routes"],
+      "@services/*": ["services/*"],
+      "@services": ["services"]
+    }
+  }
+}
