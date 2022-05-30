@@ -1,9 +1,6 @@
 import UserService from '../../src/services/UserService';
-import request from 'supertest';
-import app from '../../src/app';
 import User from '@entity/User';
-
-import * as faker from 'faker';
+import random from 'random-name';
 
 describe('User', () => {
   it('Should return users list', async () => {
@@ -27,9 +24,9 @@ describe('User', () => {
   });
   it('Should create users list', async () => {
     const data = {
-      firstName: 'Lucas Gois',
+      firstName: random.first(),
       lastName: 'dos Santos',
-      email: faker.internet.email(),
+      email: `${random.first().toLowerCase()}@email.com`,
       groupsId: 'e864f604-e043-11ec-9d64-0242ac120002',
     };
     const response = await UserService.create(data);
@@ -41,7 +38,7 @@ describe('User', () => {
     expect((response as User[])[0]).toHaveProperty('email');
   });
 
-  it('Should create users list', async () => {
+  it('Should create user', async () => {
     const id = '6206cd9a-1342-4336-bba6-bc4d092abfcd';
     const data = {
       firstName: 'Cosmo User',
@@ -51,7 +48,22 @@ describe('User', () => {
     expect(response[0]).toHaveProperty('userId');
     expect(response[0]).toHaveProperty('accountId');
     expect(response[0]).toHaveProperty('firstName');
+    expect(response[0].firstName).toEqual(data.firstName);
     expect(response[0]).toHaveProperty('lastName');
     expect(response[0]).toHaveProperty('email');
+  });
+
+  it('Should delete users', async () => {
+    const id = '6206cd9a-1342-4336-bba6-bc4d092abfcd';
+    const response = await UserService.delete(id);
+
+    expect(response).toHaveProperty('message');
+  });
+
+  it('Should delete users', async () => {
+    const id = '6206cd9a-1342-4336-bba6-bc4d092abfcd';
+    const response = await UserService.retrieve(id);
+
+    expect(response).toHaveProperty('message');
   });
 });
