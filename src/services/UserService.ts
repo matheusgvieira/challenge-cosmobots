@@ -1,5 +1,5 @@
 import User from 'entity/User';
-import GroupsRepositorie from 'repositories/GroupsRepositorie';
+import GroupsRepositorie from '../repositories/GroupsRepositorie';
 import UserRepositorie from '../repositories/UserRepositorie';
 
 class UserService {
@@ -43,7 +43,7 @@ class UserService {
     return userCreated;
   }
 
-  async update(userId: string, data: UserCreteRequest): Promise<User[]> {
+  async update(userId: string, data: UserUpdateRequest): Promise<User[]> {
     const userUpdated = await UserRepositorie.update(userId, data);
 
     return userUpdated;
@@ -81,6 +81,13 @@ interface UserCreteRequest {
   lastName: string;
   email: string;
   groupsId: string;
+}
+
+interface UserUpdateRequest {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  groupsId?: string;
 }
 
 interface MessageResponse {

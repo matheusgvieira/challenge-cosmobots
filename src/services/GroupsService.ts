@@ -1,7 +1,7 @@
 import Groups from '@entity/Groups';
 import GroupsRepositorie, {
   ListUserByGroupsIdResponse,
-} from 'repositories/GroupsRepositorie';
+} from '../repositories/GroupsRepositorie';
 
 class GroupsService {
   async list(): Promise<Groups[]> {

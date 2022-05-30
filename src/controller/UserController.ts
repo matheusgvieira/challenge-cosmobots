@@ -35,6 +35,10 @@ class UserController {
       groupsId,
     });
 
+    if ('message' in response) {
+      return res.status(400).json(response);
+    }
+
     return res.json(response);
   }
 
