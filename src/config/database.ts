@@ -12,12 +12,4 @@ export const database_config = {
   },
 };
 
-if (process.env.NODE_ENV?.trim() === 'test') {
-  database_config.connection.host = 'localhost';
-  database_config.connection.port = '5432';
-  database_config.connection.user = 'postgres';
-  database_config.connection.password = '123';
-  database_config.connection.database = 'postgres';
-}
-
 export default database_config;
