@@ -15,19 +15,20 @@ class UserRepositorie extends Model<User> {
     return this.findOne().where({ email });
   }
 
-  async retrieve(userId: string): Promise<User[]> {
-    const userRetrieved = await this.findAll()
+  async retrieve(userId: string): Promise<User[] | undefined> {
+    const userRemoved = await this.findAll('us')
+      .where('us.userId', userId)
+      .whereNotNull('removedIn')
       .orderBy('removedIn', 'desc')
       .first();
 
-    const userCreated = await this.create({
-      firstName: userRetrieved?.firstName,
-      lastName: userRetrieved?.lastName,
-      email: userRetrieved?.email,
-      groupsId: userRetrieved?.groupsId,
-    });
+    if (userRemoved?.userId) {
+      const userRetrieved = await this.update(userRemoved?.userId, {
+        removedIn: null,
+      });
 
-    return userCreated;
+      return userRetrieved;
+    }
   }
 }
 

@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 
 router.get('/user', UserController.list);
 router.get('/user/:id', UserController.show);
-router.get('/user/retrieve/:id', UserController.create);
+router.get('/user/retrieve/:id', UserController.retrieve);
 router.put('/user/:id', UserController.update);
 router.post('/user', UserController.create);
 router.delete('/user/:id', UserController.delete);

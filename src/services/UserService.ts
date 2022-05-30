@@ -50,20 +50,26 @@ class UserService {
   }
 
   async delete(userId: string): Promise<MessageResponse> {
-    const userDeleted = await UserRepositorie.update(userId, {
+    await UserRepositorie.update(userId, {
       removedIn: new Date(),
     });
 
     return {
-      message: `User ${userDeleted[0].userId} successfully deleted!`,
+      message: 'User successfully deleted!',
     };
   }
 
   async retrieve(userId: string): Promise<MessageResponse> {
     const userDeleted = await UserRepositorie.retrieve(userId);
 
+    if (userDeleted) {
+      return {
+        message: `User ${userDeleted[0].userId} successfully retrieved!`,
+      };
+    }
+
     return {
-      message: `User ${userDeleted[0].userId} successfully retrieved!`,
+      message: `Error retrieving user.`,
     };
   }
 }

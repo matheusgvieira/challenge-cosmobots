@@ -45,6 +45,14 @@ class UserController {
 
     return res.json(response);
   }
+
+  async retrieve(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+
+    const response = await UserService.retrieve(id);
+
+    return res.json(response);
+  }
 }
 
 export default new UserController();
