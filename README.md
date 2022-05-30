@@ -10,6 +10,12 @@ Create database:
 docker-compose up
 ```
 
+Install all dependencys:
+
+```sh
+npm install
+```
+
 Run migrations:
 
 ```sh
